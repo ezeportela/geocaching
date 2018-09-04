@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LugarPage } from '../lugar/lugar';
+import { LugaresService } from '../../services/lugares.service';
 
 @Component({
   selector: 'page-home',
@@ -25,12 +26,17 @@ export class HomePage {
     },
   ]
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController,
+              public lugaresService: LugaresService) {
+    //this.lugares = lugaresService.getLugares()
   }
 
   crearLugar() {
     this.navCtrl.push(LugarPage)
+  }
+
+  editarLugar(lugar) {
+    this.navCtrl.push(LugarPage, { lugar })
   }
 
 }
