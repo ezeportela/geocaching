@@ -15,15 +15,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LugaresService } from '../services/lugares.service';
-
-export const firebaseConfig = {
-  apiKey: "AIzaSyDG19RlTRiVu8Rb6utkacWzG_rhVP8vDJY",
-  authDomain: "geocaching-58969.firebaseapp.com",
-  databaseURL: "https://geocaching-58969.firebaseio.com",
-  projectId: "geocaching-58969",
-  storageBucket: "geocaching-58969.appspot.com",
-  messagingSenderId: "6050213279"
-};
+import { FirebaseConfig } from '../services/firebase.config';
 
 @NgModule({
   declarations: [
@@ -37,7 +29,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(FirebaseConfig.obtenerConfig()),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],

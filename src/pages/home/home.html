@@ -7,12 +7,21 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-list>
-    <ion-item *ngFor="let lugar of lugares" (click)="editarLugar(lugar)">
-      <h2>{{ lugar.nombre }}</h2>
-      <h3>{{ lugar.direccion }}</h3>
-      <p>{{ lugar.categoria }}</p>
-    </ion-item>
+    <ion-item-sliding *ngFor="let lugar of lugares">
+      <ion-item (click)="editarLugar(lugar)">
+        <h2>{{ lugar.nombre }}</h2>
+        <h3>{{ lugar.direccion }}</h3>
+        <p>{{ lugar.categoria }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="eliminarLugar(lugar)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-fab right bottom>
