@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, Platform } from 'ionic-angular';
 import { LugaresService } from '../../services/lugares.service';
 import { HomePage } from '../home/home';
+import { Camera } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,9 @@ export class LugarPage {
               private navParams: NavParams,
               private lugaresService: LugaresService,
               private alertCtrl: AlertController,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              private platform: Platform, 
+              private camera: Camera) {
     this.lugar = navParams.data.lugar || {}
   }
 
@@ -33,35 +36,13 @@ export class LugarPage {
     this.navCtrl.pop()
   }
 
-  eliminarLugar() {
-    const alert = this.alertCtrl.create({
-      title: 'Eliminar Lugar',
-      message: '¿Confirma que desea eliminar el lugar?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Eliminar',
-          handler: () => {
-            const toast = this.toastCtrl.create({
-              message: 'Lugar eliminado correctamente!',
-              duration: 2000,
-              position: 'bottom'
-            })
+  tomarFoto() {
+    this.platform.ready().then(() => {
 
-            this.lugaresService.deleteLugar(this.lugar).then(() => {
-              toast.present()
-              this.navCtrl.pop()
-            })
-          }
-        }
-      ]
+      this.camera.getPicture().then(() => {
+
+      })
+
     })
-
-    alert.present()
   }
 }

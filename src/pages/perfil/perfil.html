@@ -14,5 +14,29 @@
 
 
 <ion-content padding>
+  <ion-row>
+    <ion-col text-center>
+      <img [src]="user.photoURL" class="circle-pic" />
+    </ion-col>
+  </ion-row>
 
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Nombre Completo</ion-label>
+      <ion-input type="text" readOnly [(ngModel)]="user.displayName"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Correo Electrónico</ion-label>
+      <ion-input type="text" readOnly [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+
+
+  <button color="light" ion-button full (click)="logout()" icon-start>
+    <ion-icon name="log-out"></ion-icon>
+    Salir
+  </button>
 </ion-content>

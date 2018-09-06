@@ -8,8 +8,15 @@
 
   <ion-navbar color="primary">
     <ion-title>Lugar</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-start (click)="tomarFoto()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
+  
 </ion-header>
 
 
@@ -41,5 +48,4 @@
   </ion-list>
 
   <button ion-button full (click)="guardarLugar()">Guardar Lugar</button>
-  <button color="danger" ion-button full (click)="eliminarLugar()">Eliminar Lugar</button>
 </ion-content>

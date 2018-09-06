@@ -16,6 +16,10 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LugaresService } from '../services/lugares.service';
 import { FirebaseConfig } from '../services/firebase.config';
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../services/auth.service';
+import { StorageService } from '../services/storage.service';
+import { Camera } from '@ionic-native/camera'
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { FirebaseConfig } from '../services/firebase.config';
     LugarPage,
     PerfilPage,
     AboutPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -40,14 +45,18 @@ import { FirebaseConfig } from '../services/firebase.config';
     LugarPage,
     PerfilPage,
     AboutPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LugaresService
+    LugaresService,
+    AuthService,
+    StorageService,
+    Camera
   ]
 })
 export class AppModule {}

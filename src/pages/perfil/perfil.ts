@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the PerfilPage page.
@@ -15,11 +18,43 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: any = {}
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private storageService: StorageService,
+              private alertCtrl: AlertController,
+              private modalCtrl: ModalController) {
+    this.user = storageService.getItem('user').user
   }
 
   ionViewDidLoad() { 
     console.log('ionViewDidLoad PerfilPage')
+  }
+
+  logout() {
+    const alert = this.alertCtrl.create({
+      title: 'Desconectarse',
+      message: '¿Confirma que desea salir de la aplicación?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Salir',
+          handler: () => {
+            localStorage.removeItem('user')
+            const modal = this.modalCtrl.create(LoginPage)
+            modal.present()
+          }
+        }
+      ]
+    })
+
+    alert.present()
   }
 
 }

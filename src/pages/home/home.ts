@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { LugarPage } from '../lugar/lugar';
 import { LugaresService } from '../../services/lugares.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'page-home',
@@ -12,14 +13,19 @@ export class HomePage {
 
   constructor(private navCtrl: NavController,
               private lugaresService: LugaresService,
-              private  alertCtrl: AlertController,
-              private toastCtrl: ToastController) {
+              private alertCtrl: AlertController,
+              private toastCtrl: ToastController,
+              private storageService: StorageService) {
+    this.getLugares()
+  }
+
+  getLugares() {
     this.lugaresService
-      .getLugares()
-      .valueChanges()
-      .subscribe(snapshot => {
-        this.lugares = snapshot
-      })
+        .getLugares()
+        .valueChanges()
+        .subscribe(snapshot => {
+          this.lugares = snapshot
+        })
   }
 
   crearLugar() {
