@@ -1,15 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { LoginPage } from '../login/login';
-
-/**
- * Generated class for the PerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,7 +17,7 @@ export class PerfilPage {
               private storageService: StorageService,
               private alertCtrl: AlertController,
               private modalCtrl: ModalController) {
-    this.user = storageService.getItem('user').user
+    this.user = this.storageService.getItem('user').user
   }
 
   ionViewDidLoad() { 

@@ -5,14 +5,6 @@ import { PerfilPage } from '../perfil/perfil';
 import { AboutPage } from '../about/about';
 import { LoginPage } from '../login/login';
 import { StorageService } from '../../services/storage.service';
-import { AuthService } from '../../services/auth.service';
-
-/**
- * Generated class for the TabsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -27,18 +19,14 @@ export class TabsPage {
 
   constructor(public  navCtrl: NavController, 
               public  navParams: NavParams,
-              private modalCtrl : ModalController,
+              private modalCtrl: ModalController,
               private storageService: StorageService) {
-    const user = storageService.getItem('user')
+    const user = this.storageService.getItem('user')
     
     if(!user) {
-      const modal = modalCtrl.create(LoginPage)
+      const modal = this.modalCtrl.create(LoginPage)
       modal.present()
     }
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TabsPage');
   }
 
 }

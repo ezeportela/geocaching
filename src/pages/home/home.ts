@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { LugarPage } from '../lugar/lugar';
 import { LugaresService } from '../../services/lugares.service';
-import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'page-home',
@@ -14,8 +13,7 @@ export class HomePage {
   constructor(private navCtrl: NavController,
               private lugaresService: LugaresService,
               private alertCtrl: AlertController,
-              private toastCtrl: ToastController,
-              private storageService: StorageService) {
+              private toastCtrl: ToastController) {
     this.getLugares()
   }
 

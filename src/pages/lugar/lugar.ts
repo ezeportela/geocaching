@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform } from 'ionic-angular';
 import { LugaresService } from '../../services/lugares.service';
-import { HomePage } from '../home/home';
 import { Camera } from '@ionic-native/camera';
 
 @IonicPage()
@@ -15,11 +14,10 @@ export class LugarPage {
   constructor(private navCtrl: NavController, 
               private navParams: NavParams,
               private lugaresService: LugaresService,
-              private alertCtrl: AlertController,
               private toastCtrl: ToastController,
               private platform: Platform, 
               private camera: Camera) {
-    this.lugar = navParams.data.lugar || {}
+    this.lugar = this.navParams.data.lugar || {}
   }
 
   guardarLugar() {

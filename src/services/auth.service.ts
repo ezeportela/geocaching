@@ -6,22 +6,36 @@ import * as firebase from"firebase/app";
 @Injectable()
 export class AuthService {
 
-    constructor (public afDB: AngularFireDatabase, public afAuth: AngularFireAuth) {
-    }
+  constructor (public afDB: AngularFireDatabase, 
+                public afAuth: AngularFireAuth) {
+  }
 
-    relogin(token) {
-      return this.afAuth.auth.signInWithCustomToken(token)
-    }
+  loginWithEmail(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+  }
 
-    login(provider) {
-      return this.afAuth.auth.signInWithPopup(provider)
-    }
+  nativeGoogleLogin() {
+    /*return this.googlePlus.login({
+      'webClientId': '96677423232-e9ahll8l89tqo560n924up6mg4jeql8q.apps.googleusercontent.com',
+      'offline': true,
+      'scopes': 'profile email'
+    }).then(response => response)
+      .catch(error => alert(error))*/
 
-    loginWithGoogle() {
-      return this.login(new firebase.auth.GoogleAuthProvider)
-    }
+  
+      //return gplusUserawait this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+  }
 
-    logout() {
-        return this.afAuth.auth.signOut()
+  async webGoogleLogin() {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      return await this.afAuth.auth.signInWithPopup(provider);
+    } catch(err) {
+      console.log(err)
     }
+  }
+
+  logout() {
+      return this.afAuth.auth.signOut()
+  }
 }
